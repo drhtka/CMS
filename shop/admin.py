@@ -41,7 +41,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class PromoAdmin(admin.ModelAdmin):
     list_display = ('slug', 'promo_type', 'get_img', 'start_time', 'end_time', 'id', 'available',)
     prepopulated_fields = {'slug': ('promo_type',)}
-    list_editable = ('promo_type',  'end_time', 'available',)
+    list_editable = ('promo_type', 'start_time', 'end_time', 'available',)
     fields = ('promo_type', 'slug', 'image', 'start_time', 'end_time', 'get_img',)
     readonly_fields = ('get_img',)
 
@@ -52,5 +52,6 @@ class PromoAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+
 
 
