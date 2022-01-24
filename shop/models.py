@@ -24,7 +24,7 @@ class Promo(models.Model):
     image = models.ImageField('Картинка', upload_to='promo/')
     promo_type = models.CharField('Тип рекламы', max_length=128)
     description = models.TextField('Опсание', )
-    start_time = models.DateField('Начало', auto_now_add=True)
+    start_time = models.DateField('Начало',null=True)
     end_time = models.DateField('Конец', null=True)
     available = models.BooleanField('Активно', default=True)
 
@@ -46,7 +46,6 @@ class Category(models.Model):
 
 class Item(models.Model):
     class Meta:
-        ordering = ('-name',)
         verbose_name = 'Все товары'
         verbose_name_plural = 'Все товары'
 
