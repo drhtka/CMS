@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from shop.models import Category, Promo, Brands
+from shop.models import Category, Promo, Brands, Item, Dishwasher, Notebook, VacuumCleaner, TV
 
+for model in [Item, VacuumCleaner, TV]: #Dishwasher, Brand, ,
+    admin.site.register(model)
 
 # @admin.register(Brands)
 class BrandsAdmin(admin.ModelAdmin):
@@ -53,5 +55,40 @@ class PromoAdmin(admin.ModelAdmin):
 
     get_img.short_description = 'Миниатюра'
 
+@admin.register(Dishwasher)
+class DishwasherAdmin(admin.ModelAdmin):
+    class Media:
+        css = {}
+
+        list_display = ('model', 'brand_name', 'price',
+                        'color', 'test_show_promo', 'colored_name')
+        list_filter = ('price', 'brand_name', 'color',)
+        fieldsets = (
+            ('General info', {
+                'classes': ('wide', 'extrapretty'),
+                'fields': ('brand_name', 'model'),
+            }),
+            ('Advanced options', {
+                'classes': ('wide', 'extrapretty'),
+                'description': ('Описание полей'),
+                'fields': ('price', 'color'),
+            }),)
+        sortable_by = 'price'
+        search_fields = ['brand_name__pk']
+        # exclude = ('price',)
+        empty_value_display = '-Без бренда-'
+        readonly_fields = ['price']
+
+        def test_show_promo(self, obj): # используем объект который пердается в данную функцию
+            return obj.promo # и выводим то поле которое нам надо
+
+        def delete_model(self, request, obj):
+            pass
+
+
+@admin.register(Notebook)
+class NotebookAdmin(admin.ModelAdmin):
+    class Media:
+        css = {}
 
 

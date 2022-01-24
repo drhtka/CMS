@@ -57,9 +57,9 @@ class Item(models.Model):
     color = models.CharField('Цвет', max_length=30)
     warranty = models.IntegerField('Гарантия')
     count = models.IntegerField('Цена')
-    brand_name = models.ForeignKey(Brands, on_delete=models.CASCADE, default=None)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
-    promo = models.ManyToManyField(Promo)
+    brand_name = models.ForeignKey(Brands, verbose_name='Бренд', on_delete=models.CASCADE, default=None)
+    category = models.ForeignKey(Category, verbose_name='Категории', on_delete=models.CASCADE, default=None)
+    promo = models.ManyToManyField(Promo, verbose_name='Реклама акции', )
 
     def __str__(self):
         return f'{self.brand_name} {self.model}'
