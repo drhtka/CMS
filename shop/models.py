@@ -67,20 +67,49 @@ class Item(models.Model):
 class Notebook(Item):
     class Meta:
         verbose_name = 'Ноутбуки'
-        verbose_name_plural = 'Все товары'
+        verbose_name_plural = 'Ноутбуки'
 
-    display = models.DecimalField(max_digits=5, decimal_places=4)
-    memory = models.IntegerField()
-    video_memory = models.IntegerField()
-    cpu = models.CharField(max_length=128)
+    display = models.DecimalField('Экран', max_digits=5, decimal_places=4)
+    memory = models.IntegerField('Оперативня память')
+    video_memory = models.IntegerField('Видео память')
+    cpu = models.CharField('Процессор', max_length=128)
+
+    def colored_name(self):
+        return format_html(
+            '<span style="color: #0fabff;">{} {}</span>',
+            self.model,
+            self.brand_name,
+        )
+
 
 
 class Dishwasher(Item):
+    class Meta:
+        verbose_name = 'Стиральные машины'
+        verbose_name_plural = 'Стиральные машины'
 
     energy_saving_class = models.CharField(max_length=2, default='A+')
-    power = models.IntegerField(default=0)
-    width = models.FloatField()
-    height = models.FloatField()
+    power = models.IntegerField('Мощность', default=0)
+    width = models.FloatField('Ширина')
+    height = models.FloatField('Высота')
+
+    def colored_name(self):
+        return format_html(
+            '<span style="color: #0fff47;">{} {}</span>',
+            self.model,
+            self.brand_name,
+        )
+
+class VacuumCleaner(Item):
+    class Meta:
+        verbose_name = 'Пылесосы'
+        verbose_name_plural = 'Пылесосы'
+
+    noise_level = models.FloatField('Уровень шума')
+    power = models.IntegerField('Мощность')
+    width = models.FloatField('Ширина')
+    height = models.FloatField('Высота')
+    eco_engine = models.BooleanField('Двигатель', default=False)
 
     def colored_name(self):
         return format_html(
@@ -89,16 +118,20 @@ class Dishwasher(Item):
             self.brand_name,
         )
 
-class VacuumCleaner(Item):
-    noise_level = models.FloatField()
-    power = models.IntegerField()
-    width = models.FloatField()
-    height = models.FloatField()
-    eco_engine = models.BooleanField(default=False)
-
 
 class TV(Item):
-    display = models.DecimalField(max_digits=5, decimal_places=4)
-    memory = models.IntegerField()
-    display_type = models.CharField(max_length=8)
+    class Meta:
+        verbose_name = 'Телевизоры'
+        verbose_name_plural = 'Телевизоры'
+
+    display = models.DecimalField('Экран', max_digits=5, decimal_places=4)
+    memory = models.IntegerField('Память')
+    display_type = models.CharField('Экран', max_length=8)
     smart_tv = models.BooleanField(False)
+
+    def colored_name(self):
+        return format_html(
+            '<span style="color: #0f2fff;">{} {}</span>',
+            self.model,
+            self.brand_name,
+        )
