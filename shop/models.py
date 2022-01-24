@@ -43,3 +43,22 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+class Item(models.Model):
+    class Meta:
+        ordering = ('-name',)
+        verbose_name = 'Все товары'
+        verbose_name_plural = 'Все товары'
+
+    description = models.TextField('Описание')
+    model = models.CharField('Модель', max_length=128)
+    price = models.FloatField('Цена')
+    color = models.CharField(max_length=30)
+    warranty = models.IntegerField()
+    count = models.IntegerField()
+    brand_name = models.ForeignKey(Brands, on_delete=models.CASCADE, default=None)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
+    promo = models.ManyToManyField(Promo)
+
+    def __str__(self):
+        return f'{self.brand_name} {self.model}'

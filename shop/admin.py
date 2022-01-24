@@ -52,3 +52,5 @@ class PromoAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+
+
