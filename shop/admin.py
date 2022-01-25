@@ -37,7 +37,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
     def get_img(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" width="80px"')
+            return mark_safe(f'<img src="{obj.image.url}" width="60px"')
         else:
             return 'нет картинки'
 
@@ -71,12 +71,12 @@ class DishwasherAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Основная информация', {
             'classes': ('wide', 'extrapretty'),
-            'fields': ('brand_name', 'model', 'name', 'slug', 'image'),
+            'fields': ('brand_name', 'category', 'model', 'name', 'slug', 'image'),
         }),
         ('Расширеные опции', {
             'classes': ('wide', 'extrapretty'),
             'description': ('Описание полей'),
-            'fields': ('price', 'color', 'energy_saving_class', 'power', 'width', 'height'),
+            'fields': ('price', 'color', 'energy_saving_class', 'power', 'width', 'height', 'promo', 'description', 'warranty', 'count'),
         }),)
 
     sortable_by = 'price'

@@ -101,7 +101,7 @@ class Dishwasher(Item):
 
     name = models.CharField('Название', max_length=128, blank=True)
     slug = models.SlugField(max_length=64, unique=True, blank=True)
-    energy_saving_class = models.CharField(max_length=2, default='A+')
+    energy_saving_class = models.CharField('Энергопотребление', max_length=2, default='A+')
     power = models.IntegerField('Мощность', default=0)
     width = models.FloatField('Ширина')
     height = models.FloatField('Высота')
