@@ -79,7 +79,7 @@ class Notebook(Item):
 
     name = models.CharField('Название', max_length=128, blank=True)
     slug = models.SlugField(max_length=64, unique=True, blank=True)
-    display = models.DecimalField('Экран', max_digits=5, decimal_places=4)
+    display = models.DecimalField('Экран', max_digits=3, decimal_places=1)
     memory = models.IntegerField('Оперативня память')
     video_memory = models.IntegerField('Видео память')
     cpu = models.CharField('Процессор', max_length=128)

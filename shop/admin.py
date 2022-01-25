@@ -66,7 +66,7 @@ class DishwasherAdmin(admin.ModelAdmin):
         css = {}
 
     list_display = ('model', 'brand_name', 'price',
-                    'color', 'test_show_promo', 'colored_name', 'get_img')
+                    'color', 'test_show_promo', 'colored_name', 'get_img',  'id',)
     list_filter = ('price', 'brand_name', 'color',)
     fieldsets = (
         ('Основная информация', {
@@ -107,7 +107,34 @@ class NotebookAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-        prepopulated_fields = {'slug': ('name',)}
+    list_display = ('model', 'brand_name', 'price',
+                    'color', 'colored_name', 'get_img',  'id',)
+    list_filter = ('price', 'brand_name', 'color',)
+    fieldsets = (
+        ('Основная информация', {
+            'classes': ('wide', 'extrapretty'),
+            'fields': ('brand_name', 'category', 'model', 'name', 'slug', 'image'),
+        }),
+        ('Расширеные опции', {
+            'classes': ('wide', 'extrapretty'),
+            'description': ('Описание полей'),
+            'fields': ('price', 'color', 'display', 'memory', 'video_memory', 'cpu', 'description', 'warranty', 'count'),
+        }),)
 
+    sortable_by = 'price'
+    search_fields = ['brand_name__pk']
+    # exclude = ('price',)
+    empty_value_display = '-Без бренда-'
+    # readonly_fields = ['price']
+    readonly_fields = ('get_img',)
+    prepopulated_fields = {'slug': ('name',)}
+
+    def get_img(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="40px"')
+        else:
+            return 'нет картинки'
+
+    get_img.short_description = 'Миниатюра'
 
 admin.site.register(Dishwasher, DishwasherAdmin)
