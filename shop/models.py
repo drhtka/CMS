@@ -149,8 +149,8 @@ class TV(Item):
     slug = models.SlugField(max_length=64, unique=True, blank=True)
     display = models.DecimalField('Экран', max_digits=2, decimal_places=0)
     memory = models.IntegerField('Память')
-    display_type = models.CharField('Экран', max_length=8)
-    smart_tv = models.BooleanField(False)
+    display_type = models.CharField('Разрешение', max_length=8)
+    smart_tv = models.BooleanField('SmartTV', False)
     image = models.ImageField('Картинка', upload_to='tv/', blank=True, null=True, default='user_default_profile.jpg', )
 
     def colored_name(self):
@@ -159,3 +159,20 @@ class TV(Item):
             self.model,
             self.brand_name,
         )
+
+class Clothes(Item):
+    class Meta:
+        verbose_name = 'Взрослая одежда'
+        verbose_name_plural = 'Взрослая одежда'
+
+    name = models.CharField('Название', max_length=128, blank=True)
+    slug = models.SlugField(max_length=64, unique=True, blank=True)
+    image = models.ImageField('Картинка', upload_to='clothes/', blank=True, null=True, default='user_default_profile.jpg', )
+
+    def colored_name(self):
+        return format_html(
+            '<span style="color: #0f2fff;">{} {}</span>',
+            self.model,
+            self.brand_name,
+        )
+
