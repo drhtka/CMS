@@ -25,7 +25,7 @@ class Promo(models.Model):
     slug = models.SlugField(max_length=64, unique=True)
     image = models.ImageField('Картинка', upload_to='promo/')
     promo_type = models.CharField('Тип рекламы', max_length=128)
-    description = models.TextField('Опсание',)
+    description = models.TextField('Описание',)
     start_time = models.DateField('Начало', null=True)
     end_time = models.DateField('Конец', null=True)
     available = models.BooleanField('Активно', default=True)
@@ -42,6 +42,7 @@ class Category(models.Model):
     name = models.CharField('Название', max_length=128)
     slug = models.SlugField(max_length=64, unique=True)
     image = models.ImageField('Картинка', upload_to='category/')
+    # description = models.TextField('Описание')
 
     def __str__(self):
         return self.name
