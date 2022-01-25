@@ -147,7 +147,7 @@ class TV(Item):
 
     name = models.CharField('Название', max_length=128, blank=True)
     slug = models.SlugField(max_length=64, unique=True, blank=True)
-    display = models.DecimalField('Экран', max_digits=5, decimal_places=4)
+    display = models.DecimalField('Экран', max_digits=2, decimal_places=0)
     memory = models.IntegerField('Память')
     display_type = models.CharField('Экран', max_length=8)
     smart_tv = models.BooleanField(False)

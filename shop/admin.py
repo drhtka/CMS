@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 
 from shop.models import Category, Promo, Brands, Item, Dishwasher, Notebook, VacuumCleaner, TV
 
-for model in [Item, VacuumCleaner, TV]:  # Dishwasher, Brand, ,
+for model in [Item, TV]:  # Dishwasher, Brand, ,
     admin.site.register(model)
 
 
@@ -60,7 +60,7 @@ class PromoAdmin(admin.ModelAdmin):
 
     get_img.short_description = 'Миниатюра'
 
-
+@admin.register(Dishwasher)
 class DishwasherAdmin(admin.ModelAdmin):
     class Media:
         css = {}
@@ -137,4 +137,38 @@ class NotebookAdmin(admin.ModelAdmin):
 
     get_img.short_description = 'Миниатюра'
 
-admin.site.register(Dishwasher, DishwasherAdmin)
+
+@admin.register(VacuumCleaner)
+class VacuumCleanerAdmin(admin.ModelAdmin):
+    class Media:
+        css = {}
+
+    list_display = ('model', 'brand_name', 'price',
+                    'color', 'colored_name', 'get_img',  'id',)
+    list_filter = ('price', 'brand_name', 'color',)
+    fieldsets = (
+        ('Основная информация', {
+            'classes': ('wide', 'extrapretty'),
+            'fields': ('brand_name', 'category', 'model', 'name', 'slug', 'image'),
+        }),
+        ('Расширеные опции', {
+            'classes': ('wide', 'extrapretty'),
+            'description': ('Описание полей'),
+            'fields': ('price', 'color', 'noise_level', 'power', 'width', 'height', 'description', 'warranty', 'count', 'eco_engine'),
+        }),)
+
+    sortable_by = 'price'
+    search_fields = ['brand_name__pk']
+    # exclude = ('price',)
+    empty_value_display = '-Без бренда-'
+    # readonly_fields = ['price']
+    readonly_fields = ('get_img',)
+    prepopulated_fields = {'slug': ('name',)}
+
+    def get_img(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="40px"')
+        else:
+            return 'нет картинки'
+
+    get_img.short_description = 'Миниатюра'
