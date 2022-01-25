@@ -3,8 +3,9 @@ from django.utils.safestring import mark_safe
 
 from shop.models import Category, Promo, Brands, Item, Dishwasher, Notebook, VacuumCleaner, TV
 
-for model in [Item, VacuumCleaner, TV]: #Dishwasher, Brand, ,
+for model in [Item, VacuumCleaner, TV]:  # Dishwasher, Brand, ,
     admin.site.register(model)
+
 
 # @admin.register(Brands)
 class BrandsAdmin(admin.ModelAdmin):
@@ -21,7 +22,10 @@ class BrandsAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+
+
 admin.site.register(Brands, BrandsAdmin)
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -39,6 +43,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
     get_img.short_description = 'Миниатюра'
 
+
 @admin.register(Promo)
 class PromoAdmin(admin.ModelAdmin):
     list_display = ('slug', 'promo_type', 'get_img', 'start_time', 'end_time', 'id', 'available',)
@@ -55,35 +60,46 @@ class PromoAdmin(admin.ModelAdmin):
 
     get_img.short_description = 'Миниатюра'
 
-@admin.register(Dishwasher)
+
 class DishwasherAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-        list_display = ('model', 'brand_name', 'price',
-                        'color', 'test_show_promo', 'colored_name')
-        list_filter = ('price', 'brand_name', 'color',)
-        fieldsets = (
-            ('General info', {
-                'classes': ('wide', 'extrapretty'),
-                'fields': ('brand_name', 'model'),
-            }),
-            ('Advanced options', {
-                'classes': ('wide', 'extrapretty'),
-                'description': ('Описание полей'),
-                'fields': ('price', 'color'),
-            }),)
-        sortable_by = 'price'
-        search_fields = ['brand_name__pk']
-        # exclude = ('price',)
-        empty_value_display = '-Без бренда-'
-        readonly_fields = ['price']
+    list_display = ('model', 'brand_name', 'price',
+                    'color', 'test_show_promo', 'colored_name', 'get_img')
+    list_filter = ('price', 'brand_name', 'color',)
+    fieldsets = (
+        ('Основная информация', {
+            'classes': ('wide', 'extrapretty'),
+            'fields': ('brand_name', 'model', 'name', 'slug', 'image'),
+        }),
+        ('Расширеные опции', {
+            'classes': ('wide', 'extrapretty'),
+            'description': ('Описание полей'),
+            'fields': ('price', 'color', 'energy_saving_class', 'power', 'width', 'height'),
+        }),)
 
-        def test_show_promo(self, obj): # используем объект который пердается в данную функцию
-            return obj.promo # и выводим то поле которое нам надо
+    sortable_by = 'price'
+    search_fields = ['brand_name__pk']
+    # exclude = ('price',)
+    empty_value_display = '-Без бренда-'
+    # readonly_fields = ['price']
+    readonly_fields = ('get_img',)
+    prepopulated_fields = {'slug': ('name',)}
 
-        def delete_model(self, request, obj):
-            pass
+    def test_show_promo(self, obj):  # используем объект который пердается в данную функцию
+        return obj.promo  # и выводим то поле которое нам надо
+
+    def delete_model(self, request, obj):
+        pass
+
+    def get_img(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="40px"')
+        else:
+            return 'нет картинки'
+
+    get_img.short_description = 'Миниатюра'
 
 
 @admin.register(Notebook)
@@ -91,4 +107,7 @@ class NotebookAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
+        prepopulated_fields = {'slug': ('name',)}
 
+
+admin.site.register(Dishwasher, DishwasherAdmin)
