@@ -74,8 +74,8 @@ class Item(models.Model):
 
 class Notebook(Item):
     class Meta:
-        verbose_name = 'Ноутбуки'
-        verbose_name_plural = 'Ноутбуки'
+        verbose_name = 'Ноутбуки и ПК'
+        verbose_name_plural = 'Ноутбуки и ПК'
 
     name = models.CharField('Название', max_length=128, blank=True)
     slug = models.SlugField(max_length=64, unique=True, blank=True)

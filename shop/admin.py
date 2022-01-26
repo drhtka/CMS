@@ -17,7 +17,7 @@ class BrandsAdmin(admin.ModelAdmin):
 
     def get_img(self, obj):
         if obj.image:
-            return mark_safe(f'<img src="{obj.image.url}" width="80px"')
+            return mark_safe(f'<img src="{obj.image.url}" width="50px"')
         else:
             return 'нет картинки'
 
@@ -34,6 +34,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_editable = ('name',)
     fields = ('name', 'slug', 'image', 'get_img',)
     readonly_fields = ('get_img',)
+
 
     def get_img(self, obj):
         if obj.image:
@@ -79,7 +80,7 @@ class DishwasherAdmin(admin.ModelAdmin):
             'fields': ('price', 'color', 'energy_saving_class', 'power', 'width', 'height', 'promo', 'description', 'warranty', 'count'),
         }),)
 
-    sortable_by = 'price'
+    sortable_by = 'price', 'brand_name'
     search_fields = ['brand_name__pk']
     # exclude = ('price',)
     empty_value_display = '-Без бренда-'
@@ -100,6 +101,7 @@ class DishwasherAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+    list_per_page = 10
 
 
 @admin.register(Notebook)
@@ -136,6 +138,7 @@ class NotebookAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+    list_per_page = 10
 
 
 @admin.register(VacuumCleaner)
@@ -172,6 +175,7 @@ class VacuumCleanerAdmin(admin.ModelAdmin):
             return 'нет картинки'
 
     get_img.short_description = 'Миниатюра'
+    list_per_page = 10
 
 
 
@@ -201,6 +205,7 @@ class TVAdmin(admin.ModelAdmin):
     # readonly_fields = ['price']
     readonly_fields = ('get_img',)
     prepopulated_fields = {'slug': ('name',)}
+    list_per_page = 10
 
     def get_img(self, obj):
         if obj.image:
@@ -215,15 +220,15 @@ class TVAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     search_fields = ['brand_name__pk', 'category_name']
     list_display = ('model', 'category', 'brand_name', 'price', 'id') #'color', 'colored_name','get_img',
-    list_filter = ('price', 'brand_name', 'color',)
-
-
+    list_filter = ('price', 'brand_name', 'category',)
+    list_per_page = 10
 
 @admin.register(Clothes)
 class ClothesAdmin(admin.ModelAdmin):
     list_display = ('model', 'category', 'brand_name', 'price', 'id', 'get_img' ) #'color', 'colored_name','get_img',
     list_filter = ('price', 'brand_name', 'color',)
     prepopulated_fields = {'slug': ('name',)}
+    list_per_page = 10
 
 
     def get_img(self, obj):
