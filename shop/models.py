@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.urls import reverse
 from django.utils.html import format_html
 
 
@@ -51,6 +52,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse(
+            'colorpage:product_list_by_category',
+            args=[self.slug]
+        )
 
 
 class Item(models.Model):
