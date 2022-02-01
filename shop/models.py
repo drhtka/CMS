@@ -93,6 +93,7 @@ class Notebook(Item):
     image = models.ImageField('Картинка', upload_to='notebook/', blank=True, null=True,
                               default='user_default_profile.jpg', )
 
+
     def colored_name(self):
         return format_html(
             '<span style="color: #0fabff;">{} {}</span>',
@@ -100,6 +101,15 @@ class Notebook(Item):
             self.brand_name,
         )
 
+    def get_fields(self):
+        return [(field.verbose_name, field.value_from_object(self)) for field in self.__class__._meta.fields]
+
+    # def get_absolute_url_det(self):
+    #     return reverse(
+    #         'shop:product_detail',
+    #         args=[self.slug]
+    #         # args=[self.category.slug, self.slug]
+    #     )
 
 class Dishwasher(Item):
     class Meta:

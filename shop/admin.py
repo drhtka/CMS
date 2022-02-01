@@ -67,8 +67,8 @@ class DishwasherAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-    list_display = ('model', 'brand_name', 'price',
-                    'colored_name', 'get_img',  'id', 'category', )#'test_show_promo',,
+    list_display = ('model', 'category', 'brand_name', 'price',
+                    'colored_name', 'get_img',  'id', )#'test_show_promo',,
     list_filter = ('price', 'brand_name', 'color',)
     fieldsets = (
         ('Основная информация', {
@@ -110,8 +110,8 @@ class NotebookAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-    list_display = ('model', 'brand_name', 'price',
-                    'colored_name', 'get_img', 'id', 'category')
+    list_display = ('model', 'category', 'brand_name', 'price',
+                    'colored_name', 'get_img', 'id', )
     list_filter = ('price', 'brand_name', 'color',)
     fieldsets = (
         ('Основная информация', {
@@ -147,8 +147,8 @@ class VacuumCleanerAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-    list_display = ('model', 'brand_name', 'price',
-                    'color', 'colored_name', 'get_img',  'id', 'category')
+    list_display = ('model',  'category', 'brand_name', 'price',
+                    'color', 'colored_name', 'get_img', 'id',)
     list_filter = ('price', 'brand_name', 'color',)
     fieldsets = (
         ('Основная информация', {
@@ -185,8 +185,8 @@ class TVAdmin(admin.ModelAdmin):
     class Media:
         css = {}
 
-    list_display = ('model', 'brand_name', 'price',
-                    'color', 'colored_name', 'get_img',  'id',)
+    list_display = ('model', 'category', 'price',
+                    'color', 'colored_name', 'get_img', 'id',)
     list_filter = ('price', 'brand_name', 'color',)
     fieldsets = (
         ('Основная информация', {
