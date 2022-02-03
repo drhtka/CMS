@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', include('shop.urls', namespace='shop')),
     path('', include('colorpage.urls', namespace='colorpage')),
+    path('create_page/', include('create_page.urls', namespace='create_page')),
 
 
 ]
