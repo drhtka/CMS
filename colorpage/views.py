@@ -31,8 +31,8 @@ def changecolor(request, category_slug=None):
         # print('class_name_append')
         apend_name.append(class_names)
         tmp_clas = class_name_append + apend_name
-        print('apend_name')
-        print(class_names)
+        # print('apend_name')
+        # print(class_names)
 
     # print Notebook.compile.__module__
     # print(Notebook.__name__)
@@ -40,15 +40,14 @@ def changecolor(request, category_slug=None):
     # выводим все товары подкатегорий которые привязаны в категорию по слагу
     categories_id = Category.objects.filter(slug=category_slug).values('id', 'name')
     for categories_id_s in categories_id:
-        print('name')
-        print(categories_id_s['name'])
+        # print('name')
+        # print(categories_id_s['name'])
         sample = categories_id_s['id']
         notebooks = Notebook.objects.filter(category_id=sample).values()
         vacuumcleaners = VacuumCleaner.objects.filter(category_id=sample).values()
         televvisions = TV.objects.filter(category_id=sample).values()
         clotheses = Clothes.objects.filter(category_id=sample).values()
         dishwashers = Dishwasher.objects.filter(category_id=sample).values()
-        # ДЕЛАТЬ ПРОВКЕРКУ НА ПУСТОТУ
         for sub_categorys in notebooks, vacuumcleaners, televvisions, clotheses, dishwashers:
             for tmpsub_category in sub_categorys:
                 sub_category.append(tmpsub_category)
@@ -147,7 +146,8 @@ def product_detail(request, pk):  # category_slug, product_slug
     print(pk)
     sub_category = []
     product = []
-    # выводим подкатегории
+    # выводим товар при нажатии подкатегории
+
     # category = Category.objects.filter(slug=category_slug).values('id')
 
     # categories_id = Category.objects.filter().values('id')
@@ -168,8 +168,8 @@ def product_detail(request, pk):  # category_slug, product_slug
     for sub_categorys in notebooks, vacuumcleaners, televvisions, clotheses, dishwashers:  # ,
         for tmpsub_category in sub_categorys:
             product.append(tmpsub_category)
-    print('product')
-    print(product)
+    # print('product')
+    # print(product)
 
     return render(request, "colorpages/detail.html", {'product': product})
 
@@ -181,48 +181,55 @@ def sub_category(request, sub_category):
     print('test')
     print(sub_category)
     products = []
-    # выводим все товары подкатегорий коорые привязаны в категорию
+    sub_category_verbose_name = ''
+
+    # выводим все товары подкатегории
     if sub_category == 'Ноутбуки и ПК':
         print('1')
+        sub_category_verbose_name=sub_category
         notebooks = Notebook.objects.filter().values()
         for notebook in notebooks:
             products.append(notebook)
 
     if sub_category == 'Пылесосы':
         print('2')
+        sub_category_verbose_name=sub_category
         vacuumcleaners = VacuumCleaner.objects.filter().values()
         for vacuumcleaner in vacuumcleaners:  # , dishwashers
             products.append(vacuumcleaner)
 
     if sub_category == 'Стиральные машины':
         print('3')
+        sub_category_verbose_name=sub_category
         dishwashers = Dishwasher.objects.filter().values()
         for dishwasher in dishwashers:
             products.append(dishwasher)
 
     if sub_category == 'Телевизоры':
         print('4')
+        sub_category_verbose_name=sub_category
         televvisions = TV.objects.filter().values()
         for televvision in televvisions:
             products.append(televvision)
     # ТЕМПЛЕЙТАМИ
     if sub_category == 'Взрослая одежда':
         print('5')
+        sub_category_verbose_name=sub_category
         clotheses = Clothes.objects.filter().values()
         for clothes in clotheses:
             products.append(clothes)
 
                         # for sub_categorys in notebooks, vacuumcleaners, televvisions, clotheses, dishwashers:
                         #     for tmpsub_category in sub_categorys:
-                        #         products.append(sub_categorys)
-    print('products')
-    print(products)
+    #                     #         products.append(sub_categorys)
+    # print('products')
+    # print(products)
 
     # return redirect(
     #     'colorpage:changecolor',
     #     category_slug=category_slug, product_slug=product_slug)
 
-    return render(request, "colorpages/indextwoo.html", {'products': products})
+    return render(request, "colorpages/indextwoo.html", {'products': products, 'sub_category_verbose_name': sub_category_verbose_name})
 
 
 """

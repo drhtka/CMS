@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col col1">Upper Left
             <ul>
-            <li class="cate-decor"><a href="{% url 'colorpage:changecolor' %}">Все</a></li>
+            <li class="cate-decor"><a href="{% url 'colorpage:changecolor' %}"><h4>Все</h4></a>{% if sub_category_verbose_name %}<h3><span>/{{ sub_category_verbose_name }}</span></h3>{% endif %}</li>
                 {% for category in categories %}
                     <li class="cate-decor">
                         <a href="{{ category.get_absolute_url }}">
