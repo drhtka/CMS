@@ -1,5 +1,5 @@
 html {
-  height: 100%;
+  height: 2500px;
 }
 body {
   margin: 0;
@@ -40,13 +40,39 @@ header{
   flex: 10;
 }
 
+/*category*/
+.cate-decor{
+  list-style-type: none;
+  text-align: left;
+}
+.main-grid{
+  height: 100vh; /*высота в процентах*/
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  grid-column-gap: 10px; /*отступы в столбце*/
+  grid-row-gap: 10px; /*отступы в ряде*/
+  margin-left: 100px;
+}
+.child-grid{
+  width: 200px;
+  height: 200px;
+}
+
+
 .footer{
   /* padding-top: 1em;
   padding-bottom: 1em; */
   align-items: center;
   height: 4em;
   background-color: greenyellow;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
+
 /* 
 /* TEMP CODE FOR THIS TEST, REMOVE FOR ACTUAL USE
 */
@@ -54,6 +80,6 @@ body {
   text-align: center;
 }
 
-*{
-  box-shadow:inset 0px 0px 0px 1px #f00;
-} 
+/**{*/
+/*  box-shadow:inset 0px 0px 0px 1px #f00;*/
+/*}*/

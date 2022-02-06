@@ -25,7 +25,7 @@
 {#      имена колассов#}
       <ul>
           {% for apend_names in apend_name %}
-              <li class="cate-decor">{{ apend_names }}</li>
+              <li class="cate-decor alert-danger">{{ apend_names }}</li>
           {% endfor %}
       </ul>
       <ul>
@@ -44,8 +44,8 @@
                           <a href="{% url 'colorpage:product_detail' product.id %} "
 {#                          <a href="{% url 'shop:product_detail' product.id %} "#}
 {#                   {% url 'colorpage:test' %}    {% url 'colorpage:product_detail' product.slug %}    {% url 'colorpage:product_detail' product.slug  product.id %}    {{ product.get_absolute_url_det }}     #}
-                             class="h2 text-white text-decoration-none">Подробнее
-                              <i class="fas fa-search-plus"></i>
+                             class="h2  text-decoration-none"><span class="detailed"> Подробнее</span>
+{#                              <i class="fas fa-search-plus"></i>#}
                           </a>
                       </div>
                   </div>

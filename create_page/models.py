@@ -73,6 +73,7 @@ class ChangePage(models.Model):
     name = models.CharField('Название страницы', max_length=128, blank=True)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
 
+
     def __str__(self):
         # return self.name
         return "Название страницы: {} ".format(self.name)

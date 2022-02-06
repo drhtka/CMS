@@ -18,7 +18,9 @@ body {
 .headerthree{
   align-items: center;
   height: 4em;
+
   background-color: rgb(47, 172, 255);
+
 }
 
 
@@ -28,6 +30,10 @@ body {
   align-items: center;
   height: 4em;
   background-color: greenyellow;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 10;
 }
 .content {
   flex: 1 0 auto;
@@ -51,7 +57,11 @@ body {
   flex: 2 ;
 
 }
-
+.detailed{
+  color: blue;
+  font-size: 1rem;
+  text-align: center;
+}
 .cate-decor{
   list-style-type: none;
   text-align: left;
