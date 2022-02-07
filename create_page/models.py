@@ -43,7 +43,7 @@ class CreateTwo(CreatedChildPage):
 
 
 class TypePages(models.Model):
-    """создание странички"""
+    """создание странички родитель"""
 
     class Meta:
         ordering = ('-name',)
@@ -72,6 +72,7 @@ class ChangePage(models.Model):
     child_create = models.ManyToManyField(CreatedChildPage, verbose_name='детеныш')
     name = models.CharField('Название страницы', max_length=128, blank=True)
     slug = models.SlugField(max_length=128, unique=True, blank=True)
+    parent = models.CharField('Кто родитель', max_length=128, blank=True)
 
 
     def __str__(self):

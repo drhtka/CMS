@@ -1,5 +1,5 @@
 html {
-  height: 2500px;
+  height: 2879px;
 }
 body {
   margin: 0;
@@ -18,23 +18,12 @@ body {
 .headerthree{
   align-items: center;
   height: 4em;
-
   background-color: rgb(47, 172, 255);
 
 }
 
 
-.headertwo{
-  /* padding-top: 1em;
-  padding-bottom: 1em; */
-  align-items: center;
-  height: 4em;
-  background-color: greenyellow;
-  position: sticky;
-  width: 100%;
-  top: 0;
-  z-index: 10;
-}
+
 .content {
   flex: 1 0 auto;
   display: flex;
@@ -78,8 +67,11 @@ body {
 .child-grid{
   width: 200px;
   height: 200px;
+  border: 1px solid antiquewhite;
 }
-
+.child-grid:hover{
+  box-shadow: 0 5px 25px 0 rgba(5, 5, 5, 0.2);
+}
 .footer{
   /* padding-top: 1em;
   padding-bottom: 1em; */
@@ -92,16 +84,7 @@ body {
   width: 100%;
   text-align: center;
 }
-.footertwo{
-  align-items: center;
-  height: 4em;
-  background-color: greenyellow;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
+
 /* 
 /* TEMP CODE FOR THIS TEST, REMOVE FOR ACTUAL USE
 */

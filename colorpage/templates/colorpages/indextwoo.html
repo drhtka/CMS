@@ -6,14 +6,48 @@
 {% block title %}<title>Two</title>{% endblock title %}
 
 {% block style %}<link rel="stylesheet" href="{% static "colorpage/css/stylecolorpage.css" %}"  type="text/css">{% endblock %}
-{% block header %}<header class="headertwo">Header</header>{% endblock header %}
+{#{% block header %}<header class="headertwo">Header</header>{% endblock header %}#}
 {% block content %}
+
+    <style>
+        .headertwo{
+            /* padding-top: 1em;
+            padding-bottom: 1em; */
+            {#display: flex;#}
+            {#align-items: center;#}
+            {#height: 4em;#}
+            background-color: #00d5c3 !important;
+            {#position: sticky;#}
+            {#width: 100%;#}
+            {#top: 0;#}
+            {#z-index: 10;#}
+        }
+
+        .footertwo{
+            {#display: flex;#}
+            {#align-items: center;#}
+            {#height: 4em;#}
+            background-color: #00d5c3 !important;
+            {#position: fixed;#}
+            {#left: 0;#}
+            {#bottom: 0;#}
+            {#width: 100%;#}
+            {#text-align: center;#}
+        }
+
+    </style>
+
   <main class="main">
     <section class="content">
       <div class="row">
-        <div class="col col1">Upper Left
+        <div class="col col1"><!--Upper Left-->
             <ul>
-            <li class="cate-decor"><a href="{% url 'colorpage:changecolor' %}"><h4>Все</h4></a>{% if sub_category_verbose_name %}<h3><span>/{{ sub_category_verbose_name }}</span></h3>{% endif %}</li>
+            <li class="cate-decor">
+                <a href="{% url 'colorpage:changecolor' %}"><h4>Все</h4></a></li>
+                {% if sub_category_verbose_name %}<h3>
+                    <li class="cate-decor"><span>/{{ sub_category_verbose_name }}</span></li>
+                </h3>
+                {% endif %}
                 {% for category in categories %}
                     <li class="cate-decor">
                         <a href="{{ category.get_absolute_url }}">
@@ -23,17 +57,16 @@
             </ul>
             </div>
 {#      имена колассов#}
-      <ul>
-          {% for apend_names in apend_name %}
-              <li class="cate-decor alert-danger">{{ apend_names }}</li>
-          {% endfor %}
-      </ul>
-      <ul>
+ <ul>
+{#          {% for apend_names in apend_name %}#}
+{#              <li class="cate-decor alert-danger">{{ apend_names }}</li>#}
+{#          {% endfor %}#}
+{#      </ul>#}
+{#      <ul>#}
 {#      verbose_name клвссов #}
           {% for sub_category in class_name_append %}<a href="{% url 'colorpage:sub_category' sub_category|verbose_name %} "><li class="cate-decor">{{ sub_category|verbose_name }}</li></a>{% endfor %}
-
       </ul>
-            <div class="col col2">Upper Middle
+            <div class="col col2"><!--Upper Middle-->
             <div class="main-grid">
               {% for product in products %}
                   <div class="child-grid">
@@ -57,4 +90,6 @@
   </main>
 {% endblock content %}
 
-{% block footer %}<footer class="footertwo">Footer</footer>{% endblock footer %}
+
+{#{% block footer %}<footer class="footertwo">Footer</footer>{% endblock footer %}#}
+{#{% block footer %}<footer class="footertwo">Footer</footer>{% endblock footer %}#}

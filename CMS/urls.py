@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from api import views as api_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', include('shop.urls', namespace='shop')),
     path('', include('colorpage.urls', namespace='colorpage')),
     path('create_page/', include('create_page.urls', namespace='create_page')),
-
-
+    path("api/posts/",
+         api_views.PostListView.as_view(),
+         name="api_post_list"),
 ]
 
 if settings.DEBUG:
