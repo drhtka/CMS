@@ -5,12 +5,18 @@
 {% block title %}<title>Детально</title>{% endblock title %}
 {% block style %}<link rel="stylesheet" href="{% static "colorpage/css/stylecolorpage.css" %}"  type="text/css">{% endblock %}
 
-{% block header %}<header class="headertwo">Header</header>{% endblock header %}
+{#{% block header %}<header class="headertwo">Header</header>{% endblock header %}#}
 {% block content %}
+    <style>
+    .headertwo{
+
+        background-color: #00d5c3 !important;
+
+    </style>
     <main class="main">
         <section class="content">
             <div class="row">
-                <div class="col col1">Upper Left
+                <div class="col col1"><!--Upper Left-->
                     <ul>
 {#                        <li class="cate-decor"><a href="{% url 'colorpage:changecolor' %}">Все</a></li>#}
 {#                        {% for category in categories %}#}
@@ -21,7 +27,7 @@
 {#                        {% endfor %}#}
                     </ul>
                 </div>
-                <div class="col col2">Upper Middle 2222
+                <div class="col col2"><!--Upper Middle 2222-->
                     <div class="main-grid">
                         <div><img  class="main-grid-image" src="{{ MEDIA_URL }}{{ product.0.image }}" alt="" width="100" height="100"></div>
                         <div>{{ product.0.cpu }}</div>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Админ категории</title>{% endblock title %}
+
+{% block content %}
+    <div class="categ-page">
+        {% for all_category_s in all_category %}
+            {#    <div>Номер поста {{ all_category_s.pk }}</div>#}
+            {#    <div>{{ all_category_s.author }}</div>#}
+            <div class="">
+{#                <h3><a class="text-decoration-none" href="{% url 'blog:ditail' all_category_s.pk %}">{{ all_category_s.title }}</a></h3>#}
+                <div><span>ID Категории: </span>{{ all_category_s.pk }}</div>
+                <div><span> </span><img class="main_img" src="{{ MEDIA_URL }}{{ all_category_s.image }}" width="100px" height="100px"></div>
+                <div><span>Тайтл: </span>{{ all_category_s.name }}</div>
+                <div><span>Название-slug: </span>{{ all_category_s.slug }}</div>
+{#                <div class="text-truncate"><span>Текст: </span>{{ all_category_s.text }}</div>#}
+{#                <div><span>Публикации: </span>{{ all_category_s.publish_date }}</div>#}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -43,28 +43,28 @@
         <div class="col col1"><!--Upper Left-->
             <ul>
             <li class="cate-decor">
-                <a href="{% url 'colorpage:changecolor' %}"><h4>Все</h4></a></li>
+                <a class="cate-decor" href="{% url 'colorpage:changecolor' %}"><h4>Все</h4></a></li>
                 {% if sub_category_verbose_name %}<h3>
                     <li class="cate-decor"><span>/{{ sub_category_verbose_name }}</span></li>
                 </h3>
                 {% endif %}
                 {% for category in categories %}
                     <li class="cate-decor">
-                        <a href="{{ category.get_absolute_url }}">
+                        <a  class="cate-decor" href="{{ category.get_absolute_url }}">
                         {{ category.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
             </div>
 {#      имена колассов#}
- <ul>
+        <ul class="col col1">
 {#          {% for apend_names in apend_name %}#}
 {#              <li class="cate-decor alert-danger">{{ apend_names }}</li>#}
 {#          {% endfor %}#}
 {#      </ul>#}
 {#      <ul>#}
 {#      verbose_name клвссов #}
-          {% for sub_category in class_name_append %}<a href="{% url 'colorpage:sub_category' sub_category|verbose_name %} "><li class="cate-decor">{{ sub_category|verbose_name }}</li></a>{% endfor %}
+          {% for sub_category in class_name_append %}<a  class="cate-decor" href="{% url 'colorpage:sub_category' sub_category|verbose_name %} "><li>{{ sub_category|verbose_name }}</li></a>{% endfor %}
       </ul>
             <div class="col col2"><!--Upper Middle-->
             <div class="main-grid">

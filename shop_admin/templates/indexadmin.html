@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Админ главная</title>{% endblock title %}
+
+{#{% block header %}{% endblock header %}#}
+{% block content %}
+    <div class="">
+        Админка главная!!!
+    </div>
+    <div>
+        Категории
+    </div>
+    <div>
+        <a class="nav-item nav-link" href="{% url 'shop_admin:categorylist' %}">Категории</a>
+    </div>
+
+{% endblock content %}
+{#{% block footer %}{% endblock footer %}#}

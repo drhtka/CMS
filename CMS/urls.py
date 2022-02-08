@@ -24,6 +24,9 @@ urlpatterns = [
     #path('', include('shop.urls', namespace='shop')),
     path('', include('colorpage.urls', namespace='colorpage')),
     path('create_page/', include('create_page.urls', namespace='create_page')),
+    path('shop_admin/', include('shop_admin.urls', namespace='shop_admin')),
+    path('shop_api/', include('api.urls', namespace='shop_api')),
+
     path("api/posts/",
          api_views.PostListView.as_view(),
          name="api_post_list"),

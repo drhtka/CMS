@@ -60,18 +60,13 @@ def changecolor(request, category_slug=None):
     # requested_category = get_object_or_404(Category, slug=category_slug)
     # products = Item.objects.filter(category=requested_category)
     if category_slug:
+        """выводим товары по слагу каегории"""
         requested_category = Category.objects.filter(slug=category_slug).values('id')
-        # items = Item.objects.filter(category_id=requested_category[0]['id']).values()
-        # for item in items:
         for requested_category in requested_category:
             if category_slug == 'kompyutery':
                 verb_name = Notebook#, Dishwasher, VacuumCleaner, TV, Clothes:
-                    # verb_name = {'verb__names': class_name_append }
                 class_name_append.append(verb_name)
                 notebooks = Notebook.objects.filter(category_id=requested_category['id']).values()  # Ноутбуки и ПК
-                # print('notebooks')
-                # print(notebooks.count())
-                # print(items[0])
                 for notebook in notebooks:
                     products.append(notebook)
                     # print(notebooks)
