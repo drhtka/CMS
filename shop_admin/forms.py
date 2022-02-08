@@ -7,3 +7,10 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
+
+
+class NotebookForms(forms.ModelForm):
+
+    class Meta:
+        model = Notebook
+
