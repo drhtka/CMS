@@ -54,7 +54,15 @@
             <div class="container col-md-9">
                 <h2 class="mt-5 font_work_main text-center">Под категории</h2>
 
-                {% for sub_category in class_name_append %}<a class="cate-decor" href="{% url 'colorpage:sub_category' sub_category|verbose_name %} "><li>{{ sub_category|verbose_name }}</li></a>{% endfor %}
+            <div class="d-flex justify-content-around">
+                <div>{{ notebooks_category.0.name }}</div>
+                <div>{{ televizoryekrany_category.0.name }}</div>
+                <div>{{ tehnika_dlya_doma_category.0.name }}</div>
+            </div>
+
+
+
+                {% for sub_category in class_name_append %}<a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' sub_category|verbose_name %} "><li>{{ sub_category|verbose_name }}</li></a>{% endfor %}
                 <hr class="hr-work">
                 <div class="row">
 {#                    {% for all_category_s in all_category %}#}
