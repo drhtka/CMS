@@ -224,7 +224,8 @@ def sub_category(request, sub_category):
     #     'colorpage:changecolor',
     #     category_slug=category_slug, product_slug=product_slug)
 
-    return render(request, "colorpages/indextwoo.html", {'products': products, 'sub_category_verbose_name': sub_category_verbose_name})
+    return render(request, "colorpages/indextwoo.html", {'products': products,
+                                                         'sub_category_verbose_name': sub_category_verbose_name})
 
 
 """

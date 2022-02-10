@@ -75,8 +75,11 @@ class Item(models.Model):
     category = models.ForeignKey(Category, verbose_name='Категории', on_delete=models.CASCADE, default=None)
     promo = models.ManyToManyField(Promo, verbose_name='Реклама акции', )
 
+    # def __str__(self):
+    #     return f'{self.brand_name} {self.model}'
     def __str__(self):
-        return f'{self.brand_name} {self.model}'
+        return self.model
+
 
 
 class Notebook(Item):

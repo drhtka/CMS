@@ -54,29 +54,17 @@
             <div class="container col-md-9">
                 <h2 class="mt-5 font_work_main text-center">Под категории</h2>
 
-            <div class="d-flex justify-content-around">
-                <div>{{ notebooks_category.0.name }}</div>
-                <div>{{ televizoryekrany_category.0.name }}</div>
-                <div>{{ tehnika_dlya_doma_category.0.name }}</div>
-            </div>
+{#            <div class="d-flex justify-content-around">#}
+{#                <div>{{ notebooks_category.0.name }}</div>#}
+{#                <div>{{ televizoryekrany_category.0.name }}</div>#}
+{#                <div>{{ tehnika_dlya_doma_category.0.name }}</div>#}
+{#                <div>{{ odezhda_category.0.name }}</div>#}
+{#            </div>#}
+
+{#                {% for sub_category in class_name_append %}<a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' sub_category|verbose_name %} "><li>{{ sub_category|verbose_name }}</li></a>{% endfor %}#}
 
 
 
-                {% for sub_category in class_name_append %}<a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' sub_category|verbose_name %} "><li>{{ sub_category|verbose_name }}</li></a>{% endfor %}
-                <hr class="hr-work">
-                <div class="row">
-{#                    {% for all_category_s in all_category %}#}
-{#                        <div class="col-lg-4 col-md-6 col-sm-6 col-12 col-xl-4 item_element mt-2 mb-2">#}
-{#                            <div><span>ID Категории: </span>{{ all_category_s.pk }}</div>#}
-{#                            <div><span> </span><img class="main_img" src="{{ MEDIA_URL }}{{ all_category_s.image }}" width="100px" height="100px"></div>#}
-{#                            <div><span>Тайтл: </span>{{ all_category_s.name }}</div>#}
-{#                            <div><span>Название-slug: </span>{{ all_category_s.slug }}</div>#}
-{#                            <p class="text-wrap text-descr mb-1 mt-1" ></p>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-                </div>
-            </div>
-        </div>
         {% comment %}
         <div class="tab-pane fade" id="drf" role="tabpanel" aria-labelledby="drf-tab">
             <div class="container col-md-9">
@@ -106,7 +94,47 @@
                 </div>
             </div>
         </div{% endcomment %}
+<div class="container">
+        <table class="table table-striped {{ no_task_style }}">
+            <thead>
+            <tr>
+                <th scope="col">{{ notebooks_category.0.name }}</th>
+                <th scope="col">{{ televizoryekrany_category.0.name }}</th>
+                <th scope="col">{{ tehnika_dlya_doma_category.0.name }}</th>
+                <th scope="col">{{ odezhda_category.0.name }}</th>
 
+            </tr>
+            </thead>
+
+            <tbody>
+
+{#            <p>{% for all_task_s in final_array %}</p>#}
+                <tr>
+                    <td><a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' notebooks|verbose_name %} ">{{ notebooks|verbose_name }}</a></td>
+                    <td><a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' televvisions|verbose_name %} ">{{ televvisions|verbose_name }}</a></td>
+
+                    <td><div><a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' dishwashers|verbose_name %} ">{{ dishwashers|verbose_name }}</a></div>
+                        <div><a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' vacuumcleaners|verbose_name %} ">{{ vacuumcleaners|verbose_name }}</a></div></td>
+
+                    <td><a class="cate-decor" href="{% url 'shop_admin:sub_category_admin' clotheses|verbose_name %} ">{{ clotheses|verbose_name }}</a></td>
+
+{#                    <td>{{ televvisions|verbose_name }}</td>#}
+{#                    <td><div>{{ dishwashers|verbose_name }}</div>#}
+{#                        <div>{{ vacuumcleaners|verbose_name }}</div></td>#}
+{#                    <td>{{ clotheses|verbose_name }}</td>#}
+                    <td></td>
+
+
+
+                    {#                    <td><a href="{% url 'taskcard' %}?task={{ all_task_s.0 }}">Подробнее</a></td>#}
+
+                </tr>
+{#            {% endfor %}#}
+            </tbody>
+        </table>
+</div>
+            </div>
+        </div>
         {#        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>#}
     </div>
 
@@ -119,4 +147,8 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 {% endblock apiblogJS %}
-{#{% block footer %}{% endblock footer %}#}
+{% block footer %}
+    <div class="footer bg-light">
+        <p>Footer</p>
+    </div>
+{% endblock footer %}
